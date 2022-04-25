@@ -7,6 +7,7 @@ import com.lagou.service.CourseContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,5 +23,20 @@ public class CourseContentServiceImpl implements CourseContentService {
     @Override
     public Course findCourseByCourseId(int courseId) {
         return courseContentMapper.findCourseByCourseId(courseId);
+    }
+
+    @Override
+    public void saveSection(CourseSection section) {
+
+        Date date = new Date();
+        section.setUpdateTime(date);
+        section.setCreateTime(date);
+        courseContentMapper.saveSection(section);
+    }
+
+    @Override
+    public void updateSection(CourseSection section) {
+        section.setUpdateTime(new Date());
+        courseContentMapper.updateSection(section);
     }
 }

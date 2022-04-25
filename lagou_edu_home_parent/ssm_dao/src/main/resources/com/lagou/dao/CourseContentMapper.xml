@@ -37,4 +37,44 @@
     <select id="findCourseByCourseId" parameterType="int" resultType="com.lagou.domain.Course">
         select id,course_name from course where id=#{id};
     </select>
+
+
+    <!--新建章节-->
+    <insert id="saveSection" parameterType="com.lagou.domain.CourseSection">
+        insert int course_section(
+            course_id,
+            section_name,
+            description,
+            order_num,
+            STATUS,
+            create_time,
+            update_time
+        )VALUES(#{courseId},#{sectionName},#{description},#{orderNum},
+        #{status},#{createTime},#{updateTime});
+        )
+    </insert>
+
+    <!--修改章节-->
+    <update id="updateSection" parameterType="com.lagou.domain.CourseSection">
+        update course_section
+        <trim prefix="set" suffixOverrides=",">
+            <if test="sectionName!=null and section!=''">
+                section_name = #{sectionName},
+            </if>
+            <if test="description != null and description != ''">
+               description = #{description},
+            </if>
+            <if test="orderNum != null and orderNum != '' or orderNum == 0">
+               order_num = #{orderNum},
+            </if>
+            <if test="updateTime != null">
+              update_time=#{updateTime}
+            </if>
+        </trim>
+        <where>
+            <if test="id !=null and id !=''">
+                id=#{id}
+            </if>
+        </where>
+    </update>
 </mapper>

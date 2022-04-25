@@ -12,4 +12,10 @@ public interface CourseContentMapper {
     //回显章节对应的课程信息
     public Course findCourseByCourseId(int courseId);
 
+    //新建章节信息
+    public void saveSection(CourseSection section);
+
+    //修改章节信息
+    public void updateSection(CourseSection section);
+
 }

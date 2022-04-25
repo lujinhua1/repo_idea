@@ -12,4 +12,11 @@ public interface CourseContentService {
 
     //回显课程信息
     public Course findCourseByCourseId(int courseId);
+
+    //保存章节
+    public void saveSection(CourseSection section);
+
+    //更新课程
+    public void updateSection(CourseSection section);
+
 }
